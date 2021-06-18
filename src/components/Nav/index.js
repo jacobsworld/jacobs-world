@@ -1,44 +1,45 @@
-import React from 'react';
+import React, { useEffect}  from 'react';
 
-function Nav() {
-
-    const categories = [
-        {
-          name: "Summer",
-          description: "Summer",
-        },
-        { 
-            name: "Fall", 
-            description: "Summer" 
-        },
-        { 
-            name: "Winter", 
-            description: "Winter" 
-        },
-        {
-          name: "Spring",
-          description: "Spring",
-        }
-      ];
+function Nav(props) {
     
-      function categorySelected(name) {
-        console.log(`${name} clicked`)
-      }
-  return (
-    <header>
-        <nav>
-            <ul className="flex-row">
-                {categories.map((category) => (
-                    <li className="mx-1" key={category.name}>
-                    <span onClick={() => categorySelected(category.name)}>
-                        {category.name}
-                    </span>
-                    </li>
-                ))}
-            </ul>
-        </nav>  
-    </header>
-  );
+    const {
+        categories = [],
+        setCurrentCategory,
+        currentCategory,
+    } = props;
+
+    useEffect(() => {
+        document.title = currentCategory.name;
+      }, [currentCategory]);
+    
+    return (
+        <header className="flex-row px-1">
+            <nav>
+                <ul className="flex-row">
+                    {/* {categories.map((category) => (
+                        <li className="mx-1" key={category.name}>
+                        <span onClick={() => categorySelected(category.name)}>
+                            {category.name}
+                        </span>
+                        </li>
+                    ))} */}
+                    {categories.map((category) => (
+                        <li className={`mx-1 ${
+                            currentCategory.name === category.name && 'navActive'
+                            }`} key={category.name}>
+                        <span
+                            onClick={() => {
+                            setCurrentCategory(category)
+                            }}
+                        >
+                            {category.name}
+                        </span>
+                        </li>
+                    ))}
+                </ul>
+            </nav>  
+        </header>
+    );
 }
 
 export default Nav;
