@@ -2,7 +2,8 @@ import React from 'react';
 import PhotoList from '../PhotoList';
 
 function Gallery({ currentCategory }) {
-    const { name, description } = currentCategory;
+  const { name, description } = currentCategory;
+  // const { currentCategory } = props;
     return (
       <section>
         <h1 data-testid="h1tag">{name}</h1>

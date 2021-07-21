@@ -30,7 +30,7 @@ function App() {
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
   return (
-    <div className="App">
+    <div>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -55,9 +55,6 @@ function App() {
       <Gallery currentCategory={currentCategory}></Gallery>
       <About></About>
       </main>
-      
-      
-      
     </div>
     
   );
